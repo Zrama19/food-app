@@ -1,5 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
+
 .recipe-list {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 24px;
+  font-family: 'Bonheur Royale', cursive;
+  font-size: 80px;
+}
+.recipe-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+  column-gap: 5px;
+}
+.recipe-input {
+  padding: 6px 16px;
+  min-width: 200px;
+  max-width: 100vw;
+  font-size: 15px;
+}
+
+.recipeCard-img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.recipeCard-name {
+  max-width: 200px;
+  text-align: center;
+  margin: 7% 7%;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 30px;
+}
+.recipe-table {
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns: 230px 230px;
+  justify-content: center;
+  align-items: baseline;
+}
+.recipe-dropdown {
+  padding: 7px 8px;
+  margin-left: 6px;
+  border-radius: 4px;
 }
