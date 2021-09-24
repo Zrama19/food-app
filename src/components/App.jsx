@@ -10,7 +10,6 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -54,14 +53,17 @@ const App = () => {
   const submit = (e) => {
     e.preventDefault();
     getRecipes();
+    setRecipe('');
   };
 
   const queryRecipe = (e) => {
     setRecipe(e.target.value);
+    e.preventDefault();
   };
 
   const queryHealth = (e) => {
     setHealthLabel(e.target.value);
+    e.preventDefault();
   };
 
   return (
