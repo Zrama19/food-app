@@ -85,7 +85,7 @@ const App = () => {
         </Box>
         <Box sx={{ minWidth: 160 }}>
           <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Food Type</InputLabel>
+            <InputLabel id='demo-simple-select-label'>Allergies?</InputLabel>
             <Select
               required
               labelId='demo-simple-select-label'
@@ -98,6 +98,9 @@ const App = () => {
               <MenuItem value={'vegan'}>Vegan</MenuItem>
               <MenuItem value={'alcohol-free'}>Alcohol Free</MenuItem>
               <MenuItem value={'dairy-free'}>Dairy Free</MenuItem>
+              <MenuItem value={'wheat-free'}>Wheat Free</MenuItem>
+              <MenuItem value={'gluten-free'}>Gluten Free</MenuItem>
+              <MenuItem value={'peanut-free'}>Peanut Free</MenuItem>
             </Select>
           </FormControl>
         </Box>
