@@ -29,7 +29,7 @@ const App = () => {
   const [healthLabel, setHealthLabel] = useState('');
   const [isLoading, setIsLoading] = useState('false');
 
-  var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&health=${healthLabel}`;
+  var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&${healthLabel}`;
   var urlOne = `https://api.edamam.com/api/recipes/v2?type=public&q=$chicken&app_id=${Keys.MY_APP_ID}&app_key=${Keys.MY_APP_KEY}`;
 
   const getRecipes = async () => {
@@ -37,7 +37,7 @@ const App = () => {
     var result = await axios.get(url);
     setRecipes(result.data.hits);
     setIsLoading(false);
-    console.log(result.data.hits);
+    console.log(url);
   };
 
   const originalRecipes = async () => {
@@ -45,7 +45,6 @@ const App = () => {
     var result = await axios.get(urlOne);
     setRecipes(result.data.hits);
     setIsLoading(false);
-    console.log(result.data);
   };
 
   useEffect(() => {
@@ -87,7 +86,6 @@ const App = () => {
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Allergies?</InputLabel>
             <Select
-              required
               labelId='demo-simple-select-label'
               id='demo-simple-select'
               value={healthLabel}
@@ -95,12 +93,12 @@ const App = () => {
               onChange={queryHealth}
               selected='vegan'
             >
-              <MenuItem value={'vegan'}>Vegan</MenuItem>
-              <MenuItem value={'alcohol-free'}>Alcohol Free</MenuItem>
-              <MenuItem value={'dairy-free'}>Dairy Free</MenuItem>
-              <MenuItem value={'wheat-free'}>Wheat Free</MenuItem>
-              <MenuItem value={'gluten-free'}>Gluten Free</MenuItem>
-              <MenuItem value={'peanut-free'}>Peanut Free</MenuItem>
+              <MenuItem value={'health=vegan'}>Vegan</MenuItem>
+              <MenuItem value={'health=alcohol-free'}>Alcohol Free</MenuItem>
+              <MenuItem value={'health=dairy-free'}>Dairy Free</MenuItem>
+              <MenuItem value={'health=wheat-free'}>Wheat Free</MenuItem>
+              <MenuItem value={'health=gluten-free'}>Gluten Free</MenuItem>
+              <MenuItem value={'health=peanut-free'}>Peanut Free</MenuItem>
             </Select>
           </FormControl>
         </Box>

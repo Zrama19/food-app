@@ -5,6 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import '../styles/styles.css';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Header = () => {
   return (
@@ -21,6 +23,20 @@ const Header = () => {
           >
             Cravin' It
           </Typography>
+          <a
+            href='https://github.com/Zrama19/food-app'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <GitHubIcon className='socials-icon' />
+          </a>
+          <a
+            href='https://www.linkedin.com/in/zarif-ramazanov-217a46156/'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <LinkedInIcon className='socials-icon' />
+          </a>
         </Toolbar>
       </AppBar>
     </Box>
