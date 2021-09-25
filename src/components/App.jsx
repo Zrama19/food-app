@@ -5,14 +5,17 @@ import '../styles/styles.css';
 import Recipes from './Recipes';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { css } from '@emotion/react';
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
+import {
+  IconButton,
+  TextField,
+  InputLabel,
+  FormControl,
+  Select,
+  Box,
+  MenuItem,
+} from '@mui/material/';
 import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
+import Header from './Header';
 
 const override = css`
   position: absolute;
@@ -68,7 +71,8 @@ const App = () => {
 
   return (
     <div>
-      <h1 className='recipe-list'>Recipe List</h1>
+      <Header />
+      <h1 className='recipe-list'>Whats Your Craving?</h1>
       <form onSubmit={submit} className='recipe-search'>
         <Box sx={{ maxWidth: 180 }}>
           <TextField
@@ -83,11 +87,13 @@ const App = () => {
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Food Type</InputLabel>
             <Select
+              required
               labelId='demo-simple-select-label'
               id='demo-simple-select'
               value={healthLabel}
               label='typeFood'
               onChange={queryHealth}
+              selected='vegan'
             >
               <MenuItem value={'vegan'}>Vegan</MenuItem>
               <MenuItem value={'alcohol-free'}>Alcohol Free</MenuItem>

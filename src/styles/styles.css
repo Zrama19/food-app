@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
 .recipe-list {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 24px;
+  padding: 20px 1px 12px;
   font-family: 'Bonheur Royale', cursive;
   font-size: 80px;
 }
@@ -31,10 +32,10 @@
 }
 .recipeCard-name {
   max-width: 200px;
-  text-align: center;
+
   margin: 7% 7%;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 30px;
+  font-size: 35px;
 }
 .recipe-table {
   display: grid;
@@ -47,4 +48,29 @@
   padding: 7px 8px;
   margin-left: 6px;
   border-radius: 4px;
+}
+.header-text {
+  font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+  margin-left: 10px;
+  display: inline-block;
+}
+.header-icon {
+  margin-right: 10px;
+  margin-bottom: 3px;
+  color: black;
+}
+.navbar-header {
+  background: rgb(241, 241, 244);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 1) 100% rgba(230, 230, 230, 1) 100%,
+    rgba(241, 241, 244, 1) 6%,
+    rgba(182, 182, 189, 1) 7%
+  );
+}
+
+body {
+  background-color: #d6c2c0;
+  background-image: url('https://www.transparenttextures.com/patterns/bedge-grunge.png');
 }
