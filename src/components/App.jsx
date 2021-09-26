@@ -32,12 +32,14 @@ const App = () => {
   var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&${healthLabel}`;
   var urlOne = `https://api.edamam.com/api/recipes/v2?type=public&q=$chicken&app_id=${Keys.MY_APP_ID}&app_key=${Keys.MY_APP_KEY}`;
 
+  // var testURI = 'this is a test string';
+  // var pog = encodeURI(testURI);
+  // console.log(pog);        <- -  -  - - - - -    testing out URIs, probably gonna use this to implement routing later on.
   const getRecipes = async () => {
     setIsLoading(true);
     var result = await axios.get(url);
     setRecipes(result.data.hits);
     setIsLoading(false);
-    console.log(url);
   };
 
   const originalRecipes = async () => {
@@ -75,6 +77,7 @@ const App = () => {
       <form onSubmit={submit} className='recipe-search'>
         <Box sx={{ maxWidth: 180 }}>
           <TextField
+            required
             className='recipe-input'
             onChange={queryRecipe}
             type='text'
