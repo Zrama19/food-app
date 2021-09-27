@@ -78,3 +78,10 @@ body {
 .socials-icon {
   color: black;
 }
+
+.logo-link {
+  text-decoration: none;
+}
+.logo-link:visited {
+  color: black;
+}

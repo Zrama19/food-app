@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/styles.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const Recipes = ({ recipe }) => {
+const Recipes = ({ recipe, history }) => {
   const handleRecipeClick = (e) => {
     e.preventDefault();
     const dog = e.target.id;
-    const dogURI = encodeURI(dog);
-    const dogURL = `https://food-app-aqlkxf2sh-zrama19.vercel.app/${dogURI}`;
-    console.log(dogURL);
+    history.push(`/recipe/${dog}`);
   };
 
   return (
@@ -27,4 +25,4 @@ const Recipes = ({ recipe }) => {
   );
 };
 
-export default Recipes;
+export default withRouter(Recipes);
