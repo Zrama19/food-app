@@ -1,10 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 const Recipe = (props) => {
-  console.log(props.match.params.recipeName);
-  return <h1>Hello World</h1>;
+  // console.log(props.match.params.recipeName);
+  const recipeName = props.match.params.recipeName;
+  return (
+    <div>
+      <h2>{recipeName}</h2>
+      <p>{props.name}</p>
+    </div>
+  );
 };
 
 export default withRouter(Recipe);

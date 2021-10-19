@@ -2,24 +2,21 @@ import React from 'react';
 import '../styles/styles.css';
 import { withRouter } from 'react-router';
 
-const Recipes = ({ recipe, history }) => {
-  const handleRecipeClick = (e) => {
-    e.preventDefault();
-    const dog = e.target.id;
-    history.push(`/recipe/${dog}`);
-  };
-
+const Recipes = (props) => {
+  // console.log(props);
   return (
-    recipe['recipe']['image'].match(/\.(jpeg|jpg|gif}png)$/) != null && (
+    props.recipe['recipe']['image'].match(/\.(jpeg|jpg|gif}png)$/) != null && (
       <div className='recipeCard'>
         <img
           className='recipeCard-img'
-          src={recipe.recipe.image}
+          src={props.recipe.recipe.image}
           alt='Food'
-          onClick={handleRecipeClick}
-          id={recipe.recipe.label}
+          onClick={props.handleRecipeClick}
+          id={props.recipe.recipe.label}
+          data-parent={props.recipe.ingredientLines}
         />
-        <p className='recipeCard-name'>{recipe.recipe.label}</p>
+        <p className='recipeCard-name'>{props.recipe.recipe.label}</p>
+        {/* <p>{recipe.recipe.ingredientLines}</p> */}
       </div>
     )
   );

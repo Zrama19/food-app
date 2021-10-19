@@ -15,8 +15,7 @@ import {
   MenuItem,
 } from '@mui/material/';
 import SearchIcon from '@mui/icons-material/Search';
-import Header from './Header';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 const override = css`
   position: absolute;
@@ -24,7 +23,7 @@ const override = css`
   left: 50%;
 `;
 
-const Home = () => {
+const Home = (props) => {
   const [recipe, setRecipe] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [healthLabel, setHealthLabel] = useState('');
@@ -33,9 +32,6 @@ const Home = () => {
   var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&${healthLabel}`;
   var urlOne = `https://api.edamam.com/api/recipes/v2?type=public&q=$chicken&app_id=${Keys.MY_APP_ID}&app_key=${Keys.MY_APP_KEY}`;
 
-  // var testURI = 'this is a test string';
-  // var pog = encodeURI(testURI);
-  // console.log(pog);        <- -  -  - - - - -    testing out URIs, probably gonna use this to implement routing later on.
   const getRecipes = async () => {
     setIsLoading(true);
     var result = await axios.get(url);
@@ -69,6 +65,14 @@ const Home = () => {
   const queryHealth = (e) => {
     setHealthLabel(e.target.value);
     e.preventDefault();
+  };
+
+  const handleRecipeClick = (e) => {
+    e.preventDefault();
+    const currentRecipe = e.target.id;
+    console.log(recipes);
+
+    props.history.push(`/recipe/${currentRecipe}`);
   };
 
   return (
@@ -115,7 +119,13 @@ const Home = () => {
           <ClipLoader css={override} />
         ) : (
           recipes.map((recipe, index) => {
-            return <Recipes key={index} recipe={recipe} />;
+            return (
+              <Recipes
+                key={index}
+                recipe={recipe}
+                handleRecipeClick={handleRecipeClick}
+              />
+            );
           })
         )}
       </div>
@@ -123,4 +133,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);
