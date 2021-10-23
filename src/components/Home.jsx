@@ -63,8 +63,6 @@ const Home = (props) => {
   const queryRecipe = (e) => {
     setRecipe(e.target.value);
     e.preventDefault();
-    // console.log(e.target.value);
-    // props.history.push(`filter_foodType/${e.target.value}`);
   };
 
   const queryHealth = (e) => {
@@ -73,15 +71,9 @@ const Home = (props) => {
   };
 
   const handleRecipeClick = (recipe) => {
-    // console.log(recipe);
-    // setIsClicked(true);
-
-    // const { recipe } = incomingRecipe;
-
     props.history.push(
       `/recipe/${recipe.recipe.label}?${recipe._links.self.href}`
     );
-    // console.log(recipe.label);
   };
 
   return (

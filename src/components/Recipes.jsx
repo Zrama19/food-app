@@ -3,7 +3,6 @@ import '../styles/styles.css';
 import { withRouter } from 'react-router';
 
 const Recipes = (props) => {
-  // console.log(props);
   return (
     props.recipe['recipe']['image'].match(/\.(jpeg|jpg|gif}png)$/) != null && (
       <div className='recipeCard'>
