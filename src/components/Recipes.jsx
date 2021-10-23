@@ -11,12 +11,10 @@ const Recipes = (props) => {
           className='recipeCard-img'
           src={props.recipe.recipe.image}
           alt='Food'
-          onClick={props.handleRecipeClick}
           id={props.recipe.recipe.label}
-          data-parent={props.recipe.ingredientLines}
+          onClick={() => props.handleRecipeClick(props.recipe)}
         />
         <p className='recipeCard-name'>{props.recipe.recipe.label}</p>
-        {/* <p>{recipe.recipe.ingredientLines}</p> */}
       </div>
     )
   );

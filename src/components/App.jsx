@@ -12,7 +12,11 @@ const App = () => {
           <Route exact path='/'>
             <Home />
           </Route>
-
+          <Route exact path='/recipe'>
+            <div>
+              <h1>This page does not exist.</h1>
+            </div>
+          </Route>
           <Route exact path='/recipe/:recipeName'>
             <Recipe />
           </Route>

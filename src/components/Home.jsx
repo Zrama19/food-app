@@ -16,6 +16,8 @@ import {
 } from '@mui/material/';
 import SearchIcon from '@mui/icons-material/Search';
 import { withRouter } from 'react-router';
+import Recipe from './Recipe';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const override = css`
   position: absolute;
@@ -27,7 +29,8 @@ const Home = (props) => {
   const [recipe, setRecipe] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [healthLabel, setHealthLabel] = useState('');
-  const [isLoading, setIsLoading] = useState('false');
+  const [isLoading, setIsLoading] = useState(false);
+  // const [isClicked, setIsClicked] = useState(true);
 
   var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&${healthLabel}`;
   var urlOne = `https://api.edamam.com/api/recipes/v2?type=public&q=$chicken&app_id=${Keys.MY_APP_ID}&app_key=${Keys.MY_APP_KEY}`;
@@ -60,6 +63,8 @@ const Home = (props) => {
   const queryRecipe = (e) => {
     setRecipe(e.target.value);
     e.preventDefault();
+    // console.log(e.target.value);
+    // props.history.push(`filter_foodType/${e.target.value}`);
   };
 
   const queryHealth = (e) => {
@@ -67,67 +72,74 @@ const Home = (props) => {
     e.preventDefault();
   };
 
-  const handleRecipeClick = (e) => {
-    e.preventDefault();
-    const currentRecipe = e.target.id;
-    console.log(recipes);
+  const handleRecipeClick = (recipe) => {
+    // console.log(recipe);
+    // setIsClicked(true);
 
-    props.history.push(`/recipe/${currentRecipe}`);
+    // const { recipe } = incomingRecipe;
+
+    props.history.push(
+      `/recipe/${recipe.recipe.label}?${recipe._links.self.href}`
+    );
+    // console.log(recipe.label);
   };
 
   return (
     <div>
-      <h1 className='recipe-list'>Whats Your Craving?</h1>
-      <form onSubmit={submit} className='recipe-search'>
-        <Box sx={{ maxWidth: 180 }}>
-          <TextField
-            required
-            className='recipe-input'
-            onChange={queryRecipe}
-            type='text'
-            placeholder='Enter ingredient:'
-            value={recipe}
-          ></TextField>
-        </Box>
-        <Box sx={{ minWidth: 160 }}>
-          <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Allergies?</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={healthLabel}
-              label='typeFood'
-              onChange={queryHealth}
-              selected='vegan'
-            >
-              <MenuItem value={'health=vegan'}>Vegan</MenuItem>
-              <MenuItem value={'health=alcohol-free'}>Alcohol Free</MenuItem>
-              <MenuItem value={'health=dairy-free'}>Dairy Free</MenuItem>
-              <MenuItem value={'health=wheat-free'}>Wheat Free</MenuItem>
-              <MenuItem value={'health=gluten-free'}>Gluten Free</MenuItem>
-              <MenuItem value={'health=peanut-free'}>Peanut Free</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <IconButton type='submit'>
-          <SearchIcon />
-        </IconButton>
-      </form>
-
-      <div className='recipe-table'>
-        {isLoading ? (
-          <ClipLoader css={override} />
-        ) : (
-          recipes.map((recipe, index) => {
-            return (
-              <Recipes
-                key={index}
-                recipe={recipe}
-                handleRecipeClick={handleRecipeClick}
-              />
-            );
-          })
-        )}
+      <div>
+        <h1 className='recipe-list'>Whats Your Craving?</h1>
+        <form onSubmit={submit} className='recipe-search'>
+          <Box sx={{ maxWidth: 180 }}>
+            <TextField
+              required
+              className='recipe-input'
+              onChange={queryRecipe}
+              type='text'
+              placeholder='Enter ingredient:'
+              value={recipe}
+            ></TextField>
+          </Box>
+          <Box sx={{ minWidth: 160 }}>
+            <FormControl fullWidth>
+              <InputLabel id='demo-simple-select-label'>Allergies?</InputLabel>
+              <Select
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
+                value={healthLabel}
+                label='typeFood'
+                onChange={queryHealth}
+                selected='vegan'
+              >
+                <MenuItem value={'health=vegan'}>Vegan</MenuItem>
+                <MenuItem value={'health=alcohol-free'}>Alcohol Free</MenuItem>
+                <MenuItem value={'health=dairy-free'}>Dairy Free</MenuItem>
+                <MenuItem value={'health=wheat-free'}>Wheat Free</MenuItem>
+                <MenuItem value={'health=gluten-free'}>Gluten Free</MenuItem>
+                <MenuItem value={'health=peanut-free'}>Peanut Free</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          <IconButton type='submit'>
+            <SearchIcon />
+          </IconButton>
+        </form>
+      </div>
+      <div>
+        <div className='recipe-table'>
+          {isLoading ? (
+            <ClipLoader css={override} />
+          ) : (
+            recipes.map((recipe, index) => {
+              return (
+                <Recipes
+                  handleRecipeClick={handleRecipeClick}
+                  key={index}
+                  recipe={recipe}
+                />
+              );
+            })
+          )}
+        </div>
       </div>
     </div>
   );
