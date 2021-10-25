@@ -30,6 +30,9 @@ const Recipe = (props) => {
           return <li>{ingredient}</li>;
         })}
       </ul>
+      <div>
+        <p>{singleRecipe.mealType}</p>
+      </div>
     </div>
   );
 };
