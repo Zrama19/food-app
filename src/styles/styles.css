@@ -43,6 +43,7 @@
   grid-template-columns: 230px 230px 230px;
   justify-content: center;
   align-items: baseline;
+  /* grid-template-areas: 200px; */
 }
 .recipe-dropdown {
   padding: 7px 8px;
