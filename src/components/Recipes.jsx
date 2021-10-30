@@ -1,11 +1,13 @@
 import React from 'react';
 import '../styles/styles.css';
 import { withRouter } from 'react-router';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 const Recipes = (props) => {
   return (
     props.recipe['recipe']['image'].match(/\.(jpeg|jpg|gif}png)$/) != null && (
-      <div className='recipeCard'>
+      <div>
         <img
           className='recipeCard-img'
           src={props.recipe.recipe.image}

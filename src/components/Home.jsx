@@ -16,9 +16,8 @@ import {
 } from '@mui/material/';
 import SearchIcon from '@mui/icons-material/Search';
 import { withRouter } from 'react-router';
-import Recipe from './Recipe';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 const override = css`
   position: absolute;
   top: 50%;
@@ -117,20 +116,22 @@ const Home = (props) => {
         </form>
       </div>
       <div>
-        <div className='recipe-table'>
-          {isLoading ? (
-            <ClipLoader css={override} />
-          ) : (
-            recipes.map((recipe, index) => {
-              return (
-                <Recipes
-                  handleRecipeClick={handleRecipeClick}
-                  key={index}
-                  recipe={recipe}
-                />
-              );
-            })
-          )}
+        <div>
+          <Grid container>
+            {isLoading ? (
+              <ClipLoader css={override} />
+            ) : (
+              recipes.map((recipe, index) => {
+                return (
+                  <Recipes
+                    handleRecipeClick={handleRecipeClick}
+                    key={index}
+                    recipe={recipe}
+                  />
+                );
+              })
+            )}
+          </Grid>
         </div>
       </div>
     </div>

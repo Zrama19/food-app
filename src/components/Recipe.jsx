@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
-import * as Keys from './key';
 import axios from 'axios';
 
 const Recipe = (props) => {
