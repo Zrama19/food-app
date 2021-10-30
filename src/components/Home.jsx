@@ -17,7 +17,6 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import { withRouter } from 'react-router';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 
 const override = css`
   position: absolute;
@@ -30,7 +29,6 @@ const Home = (props) => {
   const [recipes, setRecipes] = useState([]);
   const [healthLabel, setHealthLabel] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // const [isClicked, setIsClicked] = useState(true);
 
   var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&${healthLabel}`;
   var urlOne = `https://api.edamam.com/api/recipes/v2?type=public&q=$chicken&app_id=${Keys.MY_APP_ID}&app_key=${Keys.MY_APP_KEY}`;
@@ -130,7 +128,7 @@ const Home = (props) => {
             ) : (
               recipes.map((recipe, index) => {
                 return (
-                  <Grid item xs={12} md={6} lg={4}>
+                  <Grid item xs={12} md={4} lg={3}>
                     <Recipes
                       handleRecipeClick={handleRecipeClick}
                       key={index}

@@ -39,14 +39,7 @@
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 35px;
 }
-/* .recipe-table {
-  display: grid;
-  margin-top: 24px;
-  grid-template-columns: 230px 230px 230px;
-  justify-content: center;
-  align-items: baseline;
-  grid-template-areas: 200px;
-} */
+
 .recipe-dropdown {
   padding: 7px 8px;
   margin-left: 6px;
