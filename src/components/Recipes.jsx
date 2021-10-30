@@ -1,8 +1,6 @@
 import React from 'react';
 import '../styles/styles.css';
 import { withRouter } from 'react-router';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 
 const Recipes = (props) => {
   return (
