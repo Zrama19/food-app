@@ -118,7 +118,13 @@ const Home = (props) => {
       </div>
       <div>
         <div>
-          <Grid container justify='center' align='center' alignItems='center'>
+          <Grid
+            container
+            justify='center'
+            align='center'
+            alignItems='center'
+            className='grid-spacing'
+          >
             {isLoading ? (
               <ClipLoader css={override} />
             ) : (

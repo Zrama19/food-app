@@ -28,7 +28,7 @@
   height: 250px;
   width: 250px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 50px;
 }
 .recipeCard-name {
   max-width: 200px;
@@ -87,4 +87,8 @@ body {
 }
 .logo-link:visited {
   color: black;
+}
+
+.grid-spacing {
+  margin-top: 60px;
 }
