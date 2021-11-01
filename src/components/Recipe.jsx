@@ -23,6 +23,7 @@ const Recipe = (props) => {
 
     setSingleRecipe(result.data.recipe);
     setIngredientMap(result.data.recipe.ingredientLines);
+    console.log(result.data.recipe);
     setRecipeLoading(false);
   };
 
@@ -38,12 +39,14 @@ const Recipe = (props) => {
       ) : (
         <div>
           <h1>{singleRecipe.label}</h1>
+          <img alt='Food' src={singleRecipe.image} />
           <h1>{Math.round(singleRecipe.calories) + ' calories.'}</h1>
           <ul>
             {ingredientMap.map((ingredient, index) => {
               return <li key={index}>{ingredient}</li>;
             })}
           </ul>
+
           <div>
             <p>{singleRecipe.mealType}</p>
           </div>
