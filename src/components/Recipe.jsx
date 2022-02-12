@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { css } from '@emotion/react';
+import { useLocation } from 'react-router-dom';
 
 const override = css`
   position: absolute;
@@ -11,24 +12,26 @@ const override = css`
 `;
 
 const Recipe = (props) => {
+  const location = useLocation();
   const [singleRecipe, setSingleRecipe] = useState([]);
   const [ingredientMap, setIngredientMap] = useState([]);
   const [recipeLoading, setRecipeLoading] = useState(false);
   const [networkError, setNetworkError] = useState(false);
   const [networkStatus, setNetworkStatus] = useState();
 
-  console.log(props.url);
-  // let id = '5b30daab1baa660c3e78e94c52d760fd'
+  // console.log(location.pathname);
+  const recipeId = location.pathname;
+  console.log(recipeId);
 
-  //  let url2 =  `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=8cf35d14&app_key=bcaa0fad1b335e61b667cfe9d5fce7b0`
+  let id = recipeId;
 
-  // const slicedUrl = props.location.search.slice(1, 500);
-  const url = `${props.url}`;
+  let url2 = `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=8cf35d14&app_key=bcaa0fad1b335e61b667cfe9d5fce7b0`;
+  console.log(url2);
 
   const oneRecipe = () => {
     setRecipeLoading(true);
     axios
-      .get(url)
+      .get(url2)
       .then((result) => {
         setSingleRecipe(result.data.recipe);
         setIngredientMap(result.data.recipe.ingredientLines);

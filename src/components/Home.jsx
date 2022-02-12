@@ -86,13 +86,13 @@ const Home = (props) => {
   };
 
   const handleRecipeClick = (recipe) => {
-    console.log(recipe.recipe.label);
-    console.log(recipe._links.self.href);
     setRecipeId(recipe._links.self.href);
-    console.log(recipe.recipe);
-    props.currentUrlLink(recipe._links.self.href);
-
-    navigate(`/${recipe.recipe.label}`);
+    console.log(recipe._links.self.href);
+    let theUrl = recipe._links.self.href;
+    let newUrl = theUrl.split('/');
+    let sendUrl = newUrl[6].split('?');
+    let sendTheUrl = sendUrl[0];
+    navigate(`/${sendTheUrl}`);
   };
 
   console.log(location.pathname);
