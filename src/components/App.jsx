@@ -1,22 +1,46 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Recipe from './Recipe';
 import Header from './Header';
+import { useState } from 'react';
 
 const App = () => {
+  const [recipeUrlLink, setRecipeUrlLink] = useState();
+  const currentRecipePage = (path) => {
+    console.log(path);
+  };
+
+  const currentUrlLink = (url) => {
+    console.log(url);
+    setRecipeUrlLink(url);
+  };
   return (
     <div>
       <Router>
         <Header />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route exact path='/recipe'></Route>
-          <Route exact path='/recipe/:recipeName'>
-            <Recipe />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <div>
+                <Home
+                  function={currentRecipePage}
+                  currentUrlLink={currentUrlLink}
+                />
+              </div>
+            }
+          ></Route>
+
+          <Route
+            exact
+            path='/:path'
+            element={
+              <div>
+                <Recipe url={recipeUrlLink} />
+              </div>
+            }
+          ></Route>
+        </Routes>
       </Router>
     </div>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/styles.css';
-import { withRouter } from 'react-router';
 
 const Recipes = (props) => {
   return (
@@ -19,4 +18,4 @@ const Recipes = (props) => {
   );
 };
 
-export default withRouter(Recipes);
+export default Recipes;

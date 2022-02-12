@@ -15,8 +15,9 @@ import {
   MenuItem,
 } from '@mui/material/';
 import SearchIcon from '@mui/icons-material/Search';
-import { withRouter } from 'react-router';
+
 import Grid from '@mui/material/Grid';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const override = css`
   position: absolute;
@@ -25,26 +26,41 @@ const override = css`
 `;
 
 const Home = (props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [recipe, setRecipe] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [healthLabel, setHealthLabel] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [recipeId, setRecipeId] = useState();
 
   var url = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipe}&app_id=${Keys.YOUR_APP_ID}&app_key=${Keys.YOUR_APP_KEY}&${healthLabel}`;
   var urlOne = `https://api.edamam.com/api/recipes/v2?type=public&q=$chicken&app_id=${Keys.MY_APP_ID}&app_key=${Keys.MY_APP_KEY}`;
 
-  const getRecipes = async () => {
+  const getRecipes = () => {
     setIsLoading(true);
-    var result = await axios.get(url);
-    setRecipes(result.data.hits);
-    setIsLoading(false);
+    axios
+      .get(url)
+      .then((result) => {
+        setRecipes(result.data.hits);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const originalRecipes = async () => {
+  const originalRecipes = () => {
     setIsLoading(true);
-    var result = await axios.get(urlOne);
-    setRecipes(result.data.hits);
-    setIsLoading(false);
+    axios
+      .get(urlOne)
+      .then((result) => {
+        setRecipes(result.data.hits);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -57,6 +73,7 @@ const Home = (props) => {
     getRecipes();
     setRecipe('');
   };
+  console.log(location);
 
   const queryRecipe = (e) => {
     setRecipe(e.target.value);
@@ -69,10 +86,19 @@ const Home = (props) => {
   };
 
   const handleRecipeClick = (recipe) => {
-    props.history.push(
-      `/recipe/${recipe.recipe.label}?${recipe._links.self.href}`
-    );
+    console.log(recipe.recipe.label);
+    console.log(recipe._links.self.href);
+    setRecipeId(recipe._links.self.href);
+    console.log(recipe.recipe);
+    props.currentUrlLink(recipe._links.self.href);
+
+    navigate(`/${recipe.recipe.label}`);
   };
+
+  console.log(location.pathname);
+  props.function(location.pathname);
+  console.log(props);
+  console.log(recipeId);
 
   return (
     <div>
@@ -128,10 +154,9 @@ const Home = (props) => {
             ) : (
               recipes.map((recipe, index) => {
                 return (
-                  <Grid item xs={12} md={4} lg={3}>
+                  <Grid item xs={12} md={4} lg={3} key={index}>
                     <Recipes
                       handleRecipeClick={handleRecipeClick}
-                      key={index}
                       recipe={recipe}
                     />
                   </Grid>
@@ -145,4 +170,4 @@ const Home = (props) => {
   );
 };
 
-export default withRouter(Home);
+export default Home;

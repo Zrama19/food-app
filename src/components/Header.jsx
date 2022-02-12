@@ -7,7 +7,7 @@ import '../styles/styles.css';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
