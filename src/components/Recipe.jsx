@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-import axios from 'axios';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { css } from '@emotion/react';
 import { useLocation } from 'react-router-dom';
-
-const override = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-`;
 
 const Recipe = (props) => {
   const location = useLocation();
@@ -19,29 +9,28 @@ const Recipe = (props) => {
   const [networkError, setNetworkError] = useState(false);
   const [networkStatus, setNetworkStatus] = useState();
 
-  // console.log(location.pathname);
-  const recipeId = location.pathname;
-  console.log(recipeId);
+  const recipeId = location.pathname || '';
 
   let id = recipeId;
 
   let url2 = `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=8cf35d14&app_key=bcaa0fad1b335e61b667cfe9d5fce7b0`;
-  console.log(url2);
 
-  const oneRecipe = () => {
+  const oneRecipe = async () => {
     setRecipeLoading(true);
-    axios
-      .get(url2)
-      .then((result) => {
-        setSingleRecipe(result.data.recipe);
-        setIngredientMap(result.data.recipe.ingredientLines);
-        console.log(result.data.recipe);
+    fetch(url2)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let recipe = data;
+        setSingleRecipe(recipe.recipe);
         setRecipeLoading(false);
+        setIngredientMap(recipe.recipe.ingredientLines);
       })
       .catch((err) => {
         console.log(err);
-        setNetworkError(true);
-        setNetworkStatus(err.message);
+        setNetworkStatus(err);
+        setNetworkError(err);
       });
   };
 
@@ -59,10 +48,10 @@ const Recipe = (props) => {
       ) : (
         <div>
           {recipeLoading ? (
-            <ClipLoader css={override} />
+            <h1 data-testid='loading'>Loading data...</h1>
           ) : (
-            <div>
-              <h1>{singleRecipe.label}</h1>
+            <div data-testid='loaded'>
+              <h1 data-testid='recipe-label'>{singleRecipe?.label}</h1>
               <img alt='Food' src={singleRecipe.image} />
               <h1>{Math.round(singleRecipe.calories) + ' calories.'}</h1>
               <ul>

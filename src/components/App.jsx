@@ -5,20 +5,8 @@ import Header from './Header';
 import { useState } from 'react';
 
 const App = () => {
-  // const [recipeUrlLink, setRecipeUrlLink] = useState();
-  const currentRecipePage = (path) => {
-    console.log(path);
-  };
+  const currentRecipePage = (path) => {};
 
-  // const currentUrlLink = (url) => {
-  //   console.log(url);
-  //   const splitUrl = url.split('/');
-  //   const getUrl = splitUrl[6];
-  //   const newUrl = getUrl.split('?');
-  //   const sendUrl = newUrl[0];
-
-  //   setRecipeUrlLink(sendUrl);
-  // };
   return (
     <div>
       <Router>
