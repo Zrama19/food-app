@@ -7,9 +7,8 @@ const Recipe = (props) => {
   const [ingredientMap, setIngredientMap] = useState([]);
   const [recipeLoading, setRecipeLoading] = useState(false);
   const [networkError, setNetworkError] = useState(false);
-  const [networkStatus, setNetworkStatus] = useState();
 
-  const recipeId = location.pathname || '';
+  const recipeId = location.pathname;
 
   let id = recipeId;
 
@@ -29,8 +28,7 @@ const Recipe = (props) => {
       })
       .catch((err) => {
         console.log(err);
-        setNetworkStatus(err);
-        setNetworkError(err);
+        setNetworkError(true);
       });
   };
 
@@ -42,9 +40,7 @@ const Recipe = (props) => {
   return (
     <div>
       {networkError ? (
-        <h1>
-          {networkStatus}: The page you are trying to access could not be found.
-        </h1>
+        <h1>The page you are trying to access could not be found.</h1>
       ) : (
         <div>
           {recipeLoading ? (
