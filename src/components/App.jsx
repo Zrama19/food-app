@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Recipe from './Recipe';
 import Header from './Header';
-import { useState } from 'react';
 
 const App = () => {
   const currentRecipePage = (path) => {};

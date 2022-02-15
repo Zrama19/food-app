@@ -28,6 +28,7 @@ const Recipe = (props) => {
       })
       .catch((err) => {
         console.log(err);
+
         setNetworkError(true);
       });
   };
@@ -48,8 +49,8 @@ const Recipe = (props) => {
           ) : (
             <div data-testid='loaded'>
               <h1 data-testid='recipe-label'>{singleRecipe?.label}</h1>
-              <img alt='Food' src={singleRecipe.image} />
-              <h1>{Math.round(singleRecipe.calories) + ' calories.'}</h1>
+              <img alt='Food' src={singleRecipe?.image} />
+              <h1>{Math.round(singleRecipe?.calories) + ' calories.'}</h1>
               <ul>
                 {ingredientMap.map((ingredient, index) => {
                   return <li key={index}>{ingredient}</li>;
@@ -57,7 +58,7 @@ const Recipe = (props) => {
               </ul>
 
               <div>
-                <p>{singleRecipe.mealType}</p>
+                <p>{singleRecipe?.mealType}</p>
               </div>
             </div>
           )}
